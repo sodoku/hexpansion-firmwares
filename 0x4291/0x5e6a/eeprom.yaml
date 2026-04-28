@@ -1,0 +1,8 @@
+manifest_version: "2024"
+fs_offset: 32
+eeprom_page_size: 32
+eeprom_total_size: 8192
+vid: 0x4291
+pid: 0x5E6A
+unique_id: 0x0
+friendly_name: "MegaDrive"
