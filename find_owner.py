@@ -10,13 +10,13 @@ CODEOWNERS = REPO_ROOT / ".github" / "CODEOWNERS"
 
 def find_owner(filepath: str) -> str | None:
     # Normalise input to start with /
-    target = "/" + filepath.lstrip("/")
+    target = "/" + filepath.lstrip("/").lower()
 
     best_pattern = ""
     best_line = None
 
     for line in CODEOWNERS.read_text().splitlines():
-        stripped = line.strip()
+        stripped = line.strip().lower()
         if not stripped or stripped.startswith("#"):
             continue
         pattern = stripped.split()[0]
@@ -39,6 +39,6 @@ if __name__ == "__main__":
     print(result)
 
     if len(sys.argv) > 2:
-        candidates = {u.lstrip("@") for u in sys.argv[2:]}
-        owners = {o.lstrip("@") for o in result.split()[1:]}
+        candidates = {u.lstrip("@").lower() for u in sys.argv[2:]}
+        owners = {o.lstrip("@").lower() for o in result.split()[1:]}
         sys.exit(0 if candidates & owners else 1)
