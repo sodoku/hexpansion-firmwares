@@ -71,9 +71,9 @@ jobs:
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git fetch origin main
           git checkout main
-          git rebase origin/main
           git add "$DIR_NAME/README.md" .github/CODEOWNERS
           git commit -m "Reserve vendor ID $DIR_NAME for @$USERNAME"
+          git rebase origin/main
           git push
 
       - name: Comment success and close issue
