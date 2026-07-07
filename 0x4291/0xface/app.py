@@ -99,7 +99,7 @@ class Monster(app.App):
 	async def background_task(self):
 		while True:
 			if self.leds_running:
-				self.leds[0] = self.color[0]/3, self.color[1]/3, self.color[2]/3
+				self.leds[0] = self.color[0]//5, self.color[1]//5, self.color[2]//5
 				self.leds.write()
 				await asyncio.sleep(1)
 			else:
