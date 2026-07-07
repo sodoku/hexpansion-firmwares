@@ -8,7 +8,8 @@ class Monster(app.App):
 	CAPABILITIES = ['neopixels', 'grouped_neopixels', 'leds_running']
 
 	LED_GROUPS = {
-		"eyes": [0, 1],
+		"both": ( (0, 1), ),
+		"individual": ( (0, ), (1, ), ),
 	}
 
 	def __init__(self, config=None):
@@ -16,7 +17,7 @@ class Monster(app.App):
 		
 		self.inner_leds = neopixel.NeoPixel(config.pin[3], 2)	# grouped_neopixels capability
 		self.alignment = 0
-		self.setup_led_group('eyes')
+		self.setup_led_group('both')
 		self.brightness = 0.1
 		self.leds_running = True	# leds_running capability
 
@@ -32,7 +33,6 @@ class Monster(app.App):
 		while True:
 			if self.leds_running:
 				self.leds[0] = (0, 255, 0)
-				self.leds[1] = (0, 255, 0)
 				self.leds.write()
 				await asyncio.sleep(1)
 			else:
